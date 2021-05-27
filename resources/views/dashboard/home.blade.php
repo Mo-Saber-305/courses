@@ -298,7 +298,7 @@
                 <!--end::List Widget 7-->
             </div>
         @endif
-            
+
         @if($users->count() > 0)
             <div class="col-lg-4">
                 <!--begin::List Widget 7-->
@@ -310,7 +310,7 @@
                     <!--end::Header-->
                     <!--begin::Body-->
                     <div class="card-body pt-0">
-                    @foreach($users->all()->sortByDesc('courses_count')->take(5) as $index => $user)
+                    @foreach($users->where('type', 'user')->get()->sortByDesc('courses_count')->take(5) as $index => $user)
                         <!--begin::Item-->
                             <div class="d-flex align-items-center flex-wrap mb-10">
                                 <!--begin::Symbol-->
