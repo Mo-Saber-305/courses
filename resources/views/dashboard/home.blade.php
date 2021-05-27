@@ -215,7 +215,7 @@
     </div>
 
     <div class="row">
-        @if($courses->count() > 0)
+        @if($users->courses->count() > 0)
             <div class="col-lg-5">
 
                 <!--begin::List Widget 12-->
