@@ -215,126 +215,135 @@
     </div>
 
     <div class="row">
-        <div class="col-lg-5">
+        @if($courses->count() > 0)
+            <div class="col-lg-5">
 
-            <!--begin::List Widget 12-->
-            <div class="card card-custom card-stretch gutter-b">
-                <!--begin::Header-->
-                <div class="card-header border-0">
-                    <h3 class="card-title font-weight-bolder text-dark mx-auto">top courses</h3>
-                </div>
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body pt-2">
-                @foreach($courses->all()->sortByDesc('users_count')->take(6) as $index => $course)
-                    <!--begin::Item-->
-                        <div class="d-flex flex-wrap align-items-center mb-10">
-                            <!--begin::Symbol-->
-                            <div class="symbol symbol-60 symbol-2by3 flex-shrink-0">
-                                <div class="symbol-label"
-                                     style="background-image: url({{ $course->image_path }})"></div>
-                            </div>
-                            <!--end::Symbol-->
-                            <!--begin::Title-->
-                            <div class="d-flex flex-column ml-4 flex-grow-1 mr-2">
-                                <a href="{{ route('dashboard.courses.show', $course->id) }}"
-                                   class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"
-                                   data-toggle="tooltip" data-placement="top" title="{{ $course->title }}"
-                                >
-                                    {{ Str::limit($course->title, 20) }}
-                                </a>
-                                <span class="text-muted font-weight-bold">{{ $course->users->count() }} students</span>
-                            </div>
-                            <!--end::Title-->
-                            <!--begin::btn-->
-                            <span
-                                class="label label-lg  {{ $course->status == 0 ? 'label-light-success' : 'label-light-danger' }} w-70px label-inline mt-lg-0 mb-lg-0 my-2 font-weight-bold py-4">
+                <!--begin::List Widget 12-->
+                <div class="card card-custom card-stretch gutter-b">
+                    <!--begin::Header-->
+                    <div class="card-header border-0">
+                        <h3 class="card-title font-weight-bolder text-dark mx-auto">top courses</h3>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body pt-2">
+                    @foreach($courses->all()->sortByDesc('users_count')->take(6) as $index => $course)
+                        <!--begin::Item-->
+                            <div class="d-flex flex-wrap align-items-center mb-10">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-60 symbol-2by3 flex-shrink-0">
+                                    <div class="symbol-label"
+                                         style="background-image: url({{ $course->image_path }})"></div>
+                                </div>
+                                <!--end::Symbol-->
+                                <!--begin::Title-->
+                                <div class="d-flex flex-column ml-4 flex-grow-1 mr-2">
+                                    <a href="{{ route('dashboard.courses.show', $course->id) }}"
+                                       class="text-dark-75 font-weight-bold text-hover-primary font-size-lg mb-1"
+                                       data-toggle="tooltip" data-placement="top" title="{{ $course->title }}"
+                                    >
+                                        {{ Str::limit($course->title, 20) }}
+                                    </a>
+                                    <span
+                                        class="text-muted font-weight-bold">{{ $course->users->count() }} students</span>
+                                </div>
+                                <!--end::Title-->
+                                <!--begin::btn-->
+                                <span
+                                    class="label label-lg  {{ $course->status == 0 ? 'label-light-success' : 'label-light-danger' }} w-70px label-inline mt-lg-0 mb-lg-0 my-2 font-weight-bold py-4">
                                 <strong>{{ $course->status == 0 ? 'free' : 'paid' }}</strong>
                             </span>
-                            <!--end::Btn-->
-                        </div>
-                        <!--end::Item-->
-                    @endforeach
-                </div>
-                <!--end::Body-->
-            </div>
-            <!--end::List Widget 12-->
-
-        </div>
-        <div class="col-lg-3">
-            <!--begin::List Widget 7-->
-            <div class="card card-custom gutter-b card-stretch">
-                <!--begin::Header-->
-                <div class="card-header border-0">
-                    <h3 class="card-title font-weight-bolder text-dark mx-auto">top tracks</h3>
-                </div>
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body pt-0">
-                @foreach($tracks->all()->sortByDesc('courses_count')->take(10) as $index => $track)
-                    <!--begin::Item-->
-                        <div class="d-flex align-items-center justify-content-between flex-wrap mb-8">
-                            <!--begin::Text-->
-                            <a href="{{ route('dashboard.tracks.show', $track->id) }}"
-                               class="font-weight-bold text-dark-75 text-hover-primary font-size-lg">
-                                {{ $track->name }}
-                            </a>
-                            <div
-                                class="label label-xl label-light label-inline text-dark-50 font-weight-bolder">
-                                {{ $track->courses_count }} courses
+                                <!--end::Btn-->
                             </div>
-                            <!--end::Text-->
-                        </div>
-                        <!--end::Item-->
-                    @endforeach
+                            <!--end::Item-->
+                        @endforeach
+                    </div>
+                    <!--end::Body-->
                 </div>
-                <!--end::Body-->
+                <!--end::List Widget 12-->
+
             </div>
-            <!--end::List Widget 7-->
-        </div>
-        <div class="col-lg-4">
-            <!--begin::List Widget 7-->
-            <div class="card card-custom gutter-b card-stretch">
-                <!--begin::Header-->
-                <div class="card-header border-0">
-                    <h3 class="card-title font-weight-bolder text-dark mx-auto">top students</h3>
+        @endif
+
+        @if($tracks->count() > 0)
+            <div class="col-lg-3">
+                <!--begin::List Widget 7-->
+                <div class="card card-custom gutter-b card-stretch">
+                    <!--begin::Header-->
+                    <div class="card-header border-0">
+                        <h3 class="card-title font-weight-bolder text-dark mx-auto">top tracks</h3>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body pt-0">
+                    @foreach($tracks->all()->sortByDesc('courses_count')->take(10) as $index => $track)
+                        <!--begin::Item-->
+                            <div class="d-flex align-items-center justify-content-between flex-wrap mb-8">
+                                <!--begin::Text-->
+                                <a href="{{ route('dashboard.tracks.show', $track->id) }}"
+                                   class="font-weight-bold text-dark-75 text-hover-primary font-size-lg">
+                                    {{ $track->name }}
+                                </a>
+                                <div
+                                    class="label label-xl label-light label-inline text-dark-50 font-weight-bolder">
+                                    {{ $track->courses_count }} courses
+                                </div>
+                                <!--end::Text-->
+                            </div>
+                            <!--end::Item-->
+                        @endforeach
+                    </div>
+                    <!--end::Body-->
                 </div>
-                <!--end::Header-->
-                <!--begin::Body-->
-                <div class="card-body pt-0">
-                @foreach($users->all()->sortByDesc('courses_count')->take(5) as $index => $user)
-                    <!--begin::Item-->
-                        <div class="d-flex align-items-center flex-wrap mb-10">
-                            <!--begin::Symbol-->
-                            <div class="symbol symbol-50 symbol-light mr-5">
+                <!--end::List Widget 7-->
+            </div>
+        @endif
+            
+        @if($users->count() > 0)
+            <div class="col-lg-4">
+                <!--begin::List Widget 7-->
+                <div class="card card-custom gutter-b card-stretch">
+                    <!--begin::Header-->
+                    <div class="card-header border-0">
+                        <h3 class="card-title font-weight-bolder text-dark mx-auto">top students</h3>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body pt-0">
+                    @foreach($users->all()->sortByDesc('courses_count')->take(5) as $index => $user)
+                        <!--begin::Item-->
+                            <div class="d-flex align-items-center flex-wrap mb-10">
+                                <!--begin::Symbol-->
+                                <div class="symbol symbol-50 symbol-light mr-5">
                                 <span class="symbol-label">
                                     <img src="{{ $user->image_path }}"
                                          class="h-50 align-self-center" alt="">
                                 </span>
-                            </div>
-                            <!--end::Symbol-->
-                            <!--begin::Text-->
-                            <div class="d-flex flex-column flex-grow-1 mr-2">
-                                <a href="{{ route('dashboard.users.show', $user->id) }}"
-                                   class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">
-                                    {{ $user->name }}
-                                </a>
-                                <span class="text-muted font-weight-bold">{{ $user->email }}</span>
-                                <div
-                                    class="label label-xl label-light label-inline mt-2 text-dark-50 font-weight-bolder"
-                                    style="width: fit-content;">
-                                    {{ $user->courses_count }} courses
                                 </div>
-                            </div>
-                            <!--end::Text-->
+                                <!--end::Symbol-->
+                                <!--begin::Text-->
+                                <div class="d-flex flex-column flex-grow-1 mr-2">
+                                    <a href="{{ route('dashboard.users.show', $user->id) }}"
+                                       class="font-weight-bold text-dark-75 text-hover-primary font-size-lg mb-1">
+                                        {{ $user->name }}
+                                    </a>
+                                    <span class="text-muted font-weight-bold">{{ $user->email }}</span>
+                                    <div
+                                        class="label label-xl label-light label-inline mt-2 text-dark-50 font-weight-bolder"
+                                        style="width: fit-content;">
+                                        {{ $user->courses_count }} courses
+                                    </div>
+                                </div>
+                                <!--end::Text-->
 
-                        </div>
-                        <!--end::Item-->
-                    @endforeach
+                            </div>
+                            <!--end::Item-->
+                        @endforeach
+                    </div>
+                    <!--end::Body-->
                 </div>
-                <!--end::Body-->
+                <!--end::List Widget 7-->
             </div>
-            <!--end::List Widget 7-->
-        </div>
+        @endif
     </div>
 @endsection
