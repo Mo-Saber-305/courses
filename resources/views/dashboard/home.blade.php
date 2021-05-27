@@ -215,7 +215,7 @@
     </div>
 
     <div class="row">
-        @if($users->courses->count() > 0)
+        @if($courses->count() > 0)
             <div class="col-lg-5">
 
                 <!--begin::List Widget 12-->
@@ -299,7 +299,7 @@
             </div>
         @endif
 
-        @if($users->count() > 0)
+        @if($users->where('type', 'user')->get()->count() > 0)
             <div class="col-lg-4">
                 <!--begin::List Widget 7-->
                 <div class="card card-custom gutter-b card-stretch">
