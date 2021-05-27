@@ -1,0 +1,437 @@
+@extends("dashboard.layouts.app")
+
+@section('title', config('app.name') . ' | Course Show')
+
+@push('style')
+    <link href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css" rel="stylesheet"
+          type="text/css"/>
+@endpush
+
+@section('content')
+    <!--begin::Content-->
+    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+        <!--begin::Subheader-->
+        <div class="subheader py-2 py-lg-6 subheader-transparent" id="kt_subheader">
+            <div class="container d-flex align-items-center justify-content-between flex-wrap flex-sm-nowrap">
+                <!--begin::Page Title-->
+                <h2 class="text-dark font-weight-bold my-1 mr-5">show course</h2>
+                <!--end::Page Title-->
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-transparent breadcrumb-dot font-weight-bold p-0 my-2 font-size-sm">
+                    <li class="breadcrumb-item ">
+                        <a href="{{ route('dashboard.courses.index') }}" class="text-muted">courses</a>
+                    </li>
+                    <li class="breadcrumb-item text-muted"> show course</li>
+                </ul>
+                <!--end::Breadcrumb-->
+            </div>
+        </div>
+        <!--end::Subheader-->
+        <!--begin::Entry-->
+        <div class="d-flex flex-column-fluid">
+            <!--begin::Container-->
+            <div class="container">
+                <!--begin::Card-->
+                <div class="card card-custom">
+                    <div class="card-header flex-wrap py-5">
+                        <div class="card-title">
+                            <h3 class="card-label">Course preview</h3>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row justify-content-center text-center mb-15">
+                            <div class="mb-9">
+                                <img src="{{ $course->image_path }}" alt="course image" height="400">
+                            </div>
+                            <div>
+                                <h2 class="mb-5">{{ $course->title }}</h2>
+                                <h4>
+                                    <a href="{{ route('dashboard.tracks.show', $course->track->id) }}">{{ $course->track->name }}</a>
+                                </h4>
+                                <strong>
+                                    <span
+                                        class="{{ $course->status == 0 ? 'text-success' : 'text-danger' }}">
+                                        {{ $course->status == 0 ? 'free' : 'paid' }}
+                                    </span>
+                                </strong>
+
+                                <p class="mt-3">{{ $course->description }}</p>
+                            </div>
+                        </div>
+
+                        <div class="card card-custom mb-10">
+                            <div class="card-header flex-wrap py-5">
+                                <div class="card-title">
+                                    <h2 class="card-label">video list</h2>
+                                </div>
+                                <a href="{{ route('dashboard.course.videos.create', $course->id) }}"
+                                   class="btn btn-primary font-weight-bolder">
+                                <span class="svg-icon svg-icon-light svg-icon-2x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24"/>
+                                            <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+                                            <path
+                                                d="M11,11 L11,7 C11,6.44771525 11.4477153,6 12,6 C12.5522847,6 13,6.44771525 13,7 L13,11 L17,11 C17.5522847,11 18,11.4477153 18,12 C18,12.5522847 17.5522847,13 17,13 L13,13 L13,17 C13,17.5522847 12.5522847,18 12,18 C11.4477153,18 11,17.5522847 11,17 L11,13 L7,13 C6.44771525,13 6,12.5522847 6,12 C6,11.4477153 6.44771525,11 7,11 L11,11 Z"
+                                                fill="#000000"/>
+                                        </g>
+                                    </svg>
+                                </span>
+                                    Add new Video
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <!--begin:video Datatable-->
+                                <table class="text-center">
+                                    <thead>
+                                    <tr>
+                                        <th><strong>#</strong></th>
+                                        <th><strong>title</strong></th>
+                                        <th><strong>created at</strong></th>
+                                        <th><strong>action</strong></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($course->videos as $index => $video)
+                                        <tr>
+                                            <th>{{ $index + 1 }}</th>
+                                            <th data-toggle="tooltip" data-placement="top"
+                                                title="{{ $video->title }}">
+                                                {{ $video->title }}
+                                            </th>
+
+                                            <th>{{ $video->created_at->diffForHumans() }}</th>
+
+                                            <th>
+                                                <a href="{{ $video->link }}"
+                                                   class="btn btn-sm btn-clean btn-icon mr-2 pulse pulse-primary"
+                                                   data-toggle="popover" data-placement="top" data-content="watch video"
+                                                >
+                                                <span class="svg-icon svg-icon-danger svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo7\dist/../src/media/svg/icons\Media\Youtube.svg--><svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                        height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <path
+            d="M4.22266882,4 L19.8367728,4.00001353 C21.3873185,4.00001353 22.6823897,5.1816009 22.8241881,6.72564925 C22.9414021,8.00199653 23.0000091,9.40113909 23.0000091,10.9230769 C23.0000091,12.7049599 22.9196724,14.4870542 22.758999,16.26936 L22.7589943,16.2693595 C22.6196053,17.8155637 21.3235899,19 19.7711155,19 L4.22267091,19.0000022 C2.6743525,19.0000022 1.38037032,17.8217109 1.23577882,16.2801587 C1.07859294,14.6043323 1,13.0109461 1,11.5 C1,9.98905359 1.07859298,8.39566699 1.23577893,6.7198402 L1.23578022,6.71984032 C1.38037157,5.17828994 2.67435224,4 4.22266882,4 Z"
+            fill="#000000" opacity="0.3"/>
+        <path
+            d="M11.1821576,14.8052934 L15.5856084,11.7952868 C15.8135802,11.6394552 15.8720614,11.3283211 15.7162299,11.1003494 C15.6814583,11.0494808 15.6375838,11.0054775 15.5868174,10.970557 L11.1833666,7.94156929 C10.9558527,7.78507001 10.6445485,7.84263875 10.4880492,8.07015268 C10.4307018,8.15352258 10.3999996,8.25233045 10.3999996,8.35351969 L10.3999996,14.392514 C10.3999996,14.6686564 10.6238572,14.892514 10.8999996,14.892514 C11.000689,14.892514 11.0990326,14.8621141 11.1821576,14.8052934 Z"
+            fill="#000000"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                </a>
+                                                <a href="{{ route('dashboard.videos.show', $video->id) }}"
+                                                   class="btn btn-sm btn-clean btn-icon mr-2 pulse pulse-primary"
+                                                   data-toggle="popover" data-placement="top" data-content="Show"
+                                                >
+                                                <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                                   <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo7\dist/../src/media/svg/icons\General\Binocular.svg--><svg
+                                                           xmlns="http://www.w3.org/2000/svg"
+                                                           xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                           height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <path
+            d="M12.8434797,16 L11.1565203,16 L10.9852159,16.6393167 C10.3352654,19.064965 7.84199997,20.5044524 5.41635172,19.8545019 C2.99070348,19.2045514 1.55121603,16.711286 2.20116652,14.2856378 L3.92086709,7.86762789 C4.57081758,5.44197964 7.06408298,4.00249219 9.48973122,4.65244268 C10.5421727,4.93444352 11.4089671,5.56345262 12,6.38338695 C12.5910329,5.56345262 13.4578273,4.93444352 14.5102688,4.65244268 C16.935917,4.00249219 19.4291824,5.44197964 20.0791329,7.86762789 L21.7988335,14.2856378 C22.448784,16.711286 21.0092965,19.2045514 18.5836483,19.8545019 C16.158,20.5044524 13.6647346,19.064965 13.0147841,16.6393167 L12.8434797,16 Z M17.4563502,18.1051865 C18.9630797,18.1051865 20.1845253,16.8377967 20.1845253,15.2743923 C20.1845253,13.7109878 18.9630797,12.4435981 17.4563502,12.4435981 C15.9496207,12.4435981 14.7281751,13.7109878 14.7281751,15.2743923 C14.7281751,16.8377967 15.9496207,18.1051865 17.4563502,18.1051865 Z M6.54364977,18.1051865 C8.05037928,18.1051865 9.27182488,16.8377967 9.27182488,15.2743923 C9.27182488,13.7109878 8.05037928,12.4435981 6.54364977,12.4435981 C5.03692026,12.4435981 3.81547465,13.7109878 3.81547465,15.2743923 C3.81547465,16.8377967 5.03692026,18.1051865 6.54364977,18.1051865 Z"
+            fill="#000000"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                </span>
+                                                    <span class="pulse-ring"></span>
+                                                </a>
+                                                <a href="{{ route('dashboard.videos.edit', $video->id) }}"
+                                                   class="btn btn-sm btn-clean btn-icon mr-2 pulse pulse-success"
+                                                   data-toggle="tooltip" data-placement="top" title="Edit"
+                                                >
+                                                <span class="svg-icon svg-icon-success svg-icon-2x">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         width="24px" height="24px"
+                                                         viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1"
+                                                           fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24"
+                                                                  height="24"/>
+                                                            <path
+                                                                d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z"
+                                                                fill="#000000" fill-rule="nonzero"
+                                                                transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/>
+                                                            <rect fill="#000000" opacity="0.3" x="5"
+                                                                  y="20" width="15" height="2"
+                                                                  rx="1"/>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                                    <span class="pulse-ring"></span>
+                                                </a>
+                                                <span data-toggle="modal" data-target="#exampleModalCenter">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-clean btn-icon pulse pulse-danger delete-btn"
+                                                    data-id="{{ $video->id }}"
+                                                    data-name="{{ $video->title }}"
+                                                    data-toggle="tooltip" data-placement="top" title="Delete"
+                                            >
+                                                <span
+                                                    class="svg-icon svg-icon-danger svg-icon-2x">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        width="24px" height="24px"
+                                                        viewBox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1"
+                                                               fill="none" fill-rule="evenodd">
+                                                                <rect x="0" y="0" width="24"
+                                                                      height="24"/>
+                                                                <path
+                                                                    d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
+                                                                    fill="#000000"
+                                                                    fill-rule="nonzero"/>
+                                                                <path
+                                                                    d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                                                    fill="#000000" opacity="0.3"/>
+                                                            </g>
+                                                    </svg>
+                                                </span>
+                                                <span class="pulse-ring"></span>
+                                            </button>
+                                        </span>
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <!--end:video Datatable-->
+                            </div>
+                        </div>
+
+                        <div class="card card-custom">
+                            <div class="card-header flex-wrap py-5">
+                                <div class="card-title">
+                                    <h2 class="card-label">quiz list</h2>
+                                </div>
+                                <a href="{{ route('dashboard.course.quizzes.create', $course->id) }}"
+                                   class="btn btn-primary font-weight-bolder">
+                                <span class="svg-icon svg-icon-light svg-icon-2x">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                         width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="0" y="0" width="24" height="24"/>
+                                            <circle fill="#000000" opacity="0.3" cx="12" cy="12" r="10"/>
+                                            <path
+                                                d="M11,11 L11,7 C11,6.44771525 11.4477153,6 12,6 C12.5522847,6 13,6.44771525 13,7 L13,11 L17,11 C17.5522847,11 18,11.4477153 18,12 C18,12.5522847 17.5522847,13 17,13 L13,13 L13,17 C13,17.5522847 12.5522847,18 12,18 C11.4477153,18 11,17.5522847 11,17 L11,13 L7,13 C6.44771525,13 6,12.5522847 6,12 C6,11.4477153 6.44771525,11 7,11 L11,11 Z"
+                                                fill="#000000"/>
+                                        </g>
+                                    </svg>
+                                </span>
+                                    Add new quiz
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <!--begin:quiz Datatable-->
+                                <table class="text-center">
+                                    <thead>
+                                    <tr>
+                                        <th><strong>#</strong></th>
+                                        <th><strong>name</strong></th>
+                                        <th><strong>created at</strong></th>
+                                        <th><strong>action</strong></th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($course->quizzes as $index => $quiz)
+                                        <tr>
+                                            <th>{{ $index + 1 }}</th>
+                                            <th data-toggle="tooltip" data-placement="top"
+                                                title="{{ $quiz->name }}">
+                                                {{ $quiz->name }}
+                                            </th>
+
+                                            <th>{{ $quiz->created_at->diffForHumans() }}</th>
+
+                                            <th>
+                                                <a href="{{ route('dashboard.quizzes.show', $quiz->id) }}"
+                                                   class="btn btn-sm btn-clean btn-icon mr-2 pulse pulse-primary"
+                                                   data-toggle="popover" data-placement="top" data-content="Show"
+                                                >
+                                                <span class="svg-icon svg-icon-primary svg-icon-2x">
+                                                   <span class="svg-icon svg-icon-primary svg-icon-2x"><!--begin::Svg Icon | path:C:\wamp64\www\keenthemes\themes\metronic\theme\html\demo7\dist/../src/media/svg/icons\General\Binocular.svg--><svg
+                                                           xmlns="http://www.w3.org/2000/svg"
+                                                           xmlns:xlink="http://www.w3.org/1999/xlink" width="24px"
+                                                           height="24px" viewBox="0 0 24 24" version="1.1">
+    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <rect x="0" y="0" width="24" height="24"/>
+        <path
+            d="M12.8434797,16 L11.1565203,16 L10.9852159,16.6393167 C10.3352654,19.064965 7.84199997,20.5044524 5.41635172,19.8545019 C2.99070348,19.2045514 1.55121603,16.711286 2.20116652,14.2856378 L3.92086709,7.86762789 C4.57081758,5.44197964 7.06408298,4.00249219 9.48973122,4.65244268 C10.5421727,4.93444352 11.4089671,5.56345262 12,6.38338695 C12.5910329,5.56345262 13.4578273,4.93444352 14.5102688,4.65244268 C16.935917,4.00249219 19.4291824,5.44197964 20.0791329,7.86762789 L21.7988335,14.2856378 C22.448784,16.711286 21.0092965,19.2045514 18.5836483,19.8545019 C16.158,20.5044524 13.6647346,19.064965 13.0147841,16.6393167 L12.8434797,16 Z M17.4563502,18.1051865 C18.9630797,18.1051865 20.1845253,16.8377967 20.1845253,15.2743923 C20.1845253,13.7109878 18.9630797,12.4435981 17.4563502,12.4435981 C15.9496207,12.4435981 14.7281751,13.7109878 14.7281751,15.2743923 C14.7281751,16.8377967 15.9496207,18.1051865 17.4563502,18.1051865 Z M6.54364977,18.1051865 C8.05037928,18.1051865 9.27182488,16.8377967 9.27182488,15.2743923 C9.27182488,13.7109878 8.05037928,12.4435981 6.54364977,12.4435981 C5.03692026,12.4435981 3.81547465,13.7109878 3.81547465,15.2743923 C3.81547465,16.8377967 5.03692026,18.1051865 6.54364977,18.1051865 Z"
+            fill="#000000"/>
+    </g>
+</svg><!--end::Svg Icon--></span>
+                                                </span>
+                                                    <span class="pulse-ring"></span>
+                                                </a>
+                                                <a href="{{ route('dashboard.quizzes.edit', $quiz->id) }}"
+                                                   class="btn btn-sm btn-clean btn-icon mr-2 pulse pulse-success"
+                                                   data-toggle="tooltip" data-placement="top" title="Edit"
+                                                >
+                                                <span class="svg-icon svg-icon-success svg-icon-2x">
+                                                    <svg xmlns="http://www.w3.org/2000/svg"
+                                                         xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                         width="24px" height="24px"
+                                                         viewBox="0 0 24 24" version="1.1">
+                                                        <g stroke="none" stroke-width="1"
+                                                           fill="none" fill-rule="evenodd">
+                                                            <rect x="0" y="0" width="24"
+                                                                  height="24"/>
+                                                            <path
+                                                                d="M8,17.9148182 L8,5.96685884 C8,5.56391781 8.16211443,5.17792052 8.44982609,4.89581508 L10.965708,2.42895648 C11.5426798,1.86322723 12.4640974,1.85620921 13.0496196,2.41308426 L15.5337377,4.77566479 C15.8314604,5.0588212 16,5.45170806 16,5.86258077 L16,17.9148182 C16,18.7432453 15.3284271,19.4148182 14.5,19.4148182 L9.5,19.4148182 C8.67157288,19.4148182 8,18.7432453 8,17.9148182 Z"
+                                                                fill="#000000" fill-rule="nonzero"
+                                                                transform="translate(12.000000, 10.707409) rotate(-135.000000) translate(-12.000000, -10.707409) "/>
+                                                            <rect fill="#000000" opacity="0.3" x="5"
+                                                                  y="20" width="15" height="2"
+                                                                  rx="1"/>
+                                                        </g>
+                                                    </svg>
+                                                </span>
+                                                    <span class="pulse-ring"></span>
+                                                </a>
+                                                <span data-toggle="modal" data-target="#delte-quiz">
+                                            <button type="button"
+                                                    class="btn btn-sm btn-clean btn-icon pulse pulse-danger delete-quiz-btn"
+                                                    data-id="{{ $quiz->id }}"
+                                                    data-name="{{ $quiz->name }}"
+                                                    data-toggle="tooltip" data-placement="top" title="Delete"
+                                            >
+                                                <span
+                                                    class="svg-icon svg-icon-danger svg-icon-2x">
+                                                    <svg
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                        xmlns:xlink="http://www.w3.org/1999/xlink"
+                                                        width="24px" height="24px"
+                                                        viewBox="0 0 24 24" version="1.1">
+                                                            <g stroke="none" stroke-width="1"
+                                                               fill="none" fill-rule="evenodd">
+                                                                <rect x="0" y="0" width="24"
+                                                                      height="24"/>
+                                                                <path
+                                                                    d="M6,8 L6,20.5 C6,21.3284271 6.67157288,22 7.5,22 L16.5,22 C17.3284271,22 18,21.3284271 18,20.5 L18,8 L6,8 Z"
+                                                                    fill="#000000"
+                                                                    fill-rule="nonzero"/>
+                                                                <path
+                                                                    d="M14,4.5 L14,4 C14,3.44771525 13.5522847,3 13,3 L11,3 C10.4477153,3 10,3.44771525 10,4 L10,4.5 L5.5,4.5 C5.22385763,4.5 5,4.72385763 5,5 L5,5.5 C5,5.77614237 5.22385763,6 5.5,6 L18.5,6 C18.7761424,6 19,5.77614237 19,5.5 L19,5 C19,4.72385763 18.7761424,4.5 18.5,4.5 L14,4.5 Z"
+                                                                    fill="#000000" opacity="0.3"/>
+                                                            </g>
+                                                    </svg>
+                                                </span>
+                                                <span class="pulse-ring"></span>
+                                            </button>
+                                        </span>
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                                <!--end:quize Datatable-->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--end::Card-->
+            </div>
+            <!--end::Container-->
+        </div>
+        <!--end::Entry-->
+    </div>
+    <!--end::Content-->
+
+    <!--delete video Modal-->
+    <div class="modal fade" id="exampleModalCenter" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">delete video</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4>
+                        Are you sure to delete ( <strong></strong> ) ?
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold"
+                            data-dismiss="modal">Close
+                    </button>
+                    <form action="{{ route('dashboard.course.videos.destroy') }}" method="post" class="form_delete">
+                        @csrf
+                        @method('delete')
+                        <input type="hidden" name="id" id="input_id">
+                        <button type="submit" class="btn btn-danger font-weight-bold">Delete</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--delete quize Modal-->
+    <div class="modal fade" id="delete-quiz" data-backdrop="static" tabindex="-1" role="dialog"
+         aria-labelledby="staticBackdrop" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title" id="exampleModalLabel">delete quize</h2>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <i aria-hidden="true" class="ki ki-close"></i>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    <h4>
+                        Are you sure to delete ( <strong></strong> ) ?
+                    </h4>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-primary font-weight-bold"
+                            data-dismiss="modal">Close
+                    </button>
+                    <form action="{{ route('dashboard.course.quizzes.destroy') }}" method="post" class="form_delete">
+                        @csrf
+                        @method('delete')
+                        <input type="hidden" name="id" id="input_course_id">
+                        <button type="submit" class="btn btn-danger font-weight-bold">Delete</button>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+@stop
+
+@push('script')
+    <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('table').DataTable();
+
+            $('.delete-btn').on('click', function (e) {
+                let name = $(this).attr('data-name');
+                let id = $(this).attr('data-id');
+                $('.modal-body h4 strong').html(name);
+                $('#input_id').val(id);
+            });
+
+            $('.delete-quiz-btn').on('click', function (e) {
+                e.preventDefault();
+                $('#delete-quiz').modal('toggle');
+                let name = $(this).attr('data-name');
+                let id = $(this).attr('data-id');
+                $('.modal-body h4 strong').html(name);
+                $('#input_course_id').val(id);
+            });
+        });
+    </script>
+@endpush
