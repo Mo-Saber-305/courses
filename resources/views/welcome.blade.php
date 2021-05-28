@@ -1,100 +1,417 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-    <title>Laravel</title>
+@inject("tracks", "App\Models\Track")
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+@section('title', config('app.name') . ' | Home')
 
-    <!-- Styles -->
-    <style>
-        html, body {
-            background-color: #fff;
-            color: #636b6f;
-            font-family: 'Nunito', sans-serif;
-            font-weight: 200;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .full-height {
-            height: 100vh;
-        }
-
-        .flex-center {
-            align-items: center;
-            display: flex;
-            justify-content: center;
-        }
-
-        .position-ref {
-            position: relative;
-        }
-
-        .top-right {
-            position: absolute;
-            right: 10px;
-            top: 18px;
-        }
-
-        .content {
-            text-align: center;
-        }
-
-        .title {
-            font-size: 84px;
-        }
-
-        .links > a {
-            color: #636b6f;
-            padding: 0 25px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: .1rem;
-            text-decoration: none;
-            text-transform: uppercase;
-        }
-
-        .m-b-md {
-            margin-bottom: 30px;
-        }
-    </style>
-</head>
-<body>
-<div class="flex-center position-ref full-height">
-    @if (Route::has('login'))
-        <div class="top-right links">
-            @auth
-                <a href="{{ route('dashboard.home') }}">Home</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-
-                @if (Route::has('register'))
-                    <a href="{{ route('register') }}">Register</a>
-                @endif
-            @endauth
-        </div>
-    @endif
-
-    <div class="content">
-        <div class="title m-b-md">
-            Laravel
-        </div>
-
-        <div class="links">
-            <a href="https://laravel.com/docs">Docs</a>
-            <a href="https://laracasts.com">Laracasts</a>
-            <a href="https://laravel-news.com">News</a>
-            <a href="https://blog.laravel.com">Blog</a>
-            <a href="https://nova.laravel.com">Nova</a>
-            <a href="https://forge.laravel.com">Forge</a>
-            <a href="https://vapor.laravel.com">Vapor</a>
-            <a href="https://github.com/laravel/laravel">GitHub</a>
-        </div>
+@section('content')
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
     </div>
-</div>
-</body>
-</html>
+
+    @include('includes.navbar')
+
+
+    <!-- Hero section -->
+    <section class="hero-section set-bg" data-setbg="{{ asset('img/bg.jpg') }}">
+        <div class="container">
+            <div class="hero-text text-white">
+                <h2>Get The Best Free Online Courses</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+                    scelerisque, at rutrum nulla <br> dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.
+                </p>
+            </div>
+            <div class="text-center">
+                <a href="{{ route('register') }}" class="site-btn">Sign Up Now</a>
+            </div>
+        </div>
+    </section>
+    <!-- Hero section end -->
+
+
+    <!-- categories section -->
+    <section class="categories-section spad">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Course Categories</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+                    scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+            </div>
+            <div class="row justify-content-center" id="load-data">
+                @foreach($tracks_data as $index => $track)
+                    {{--tack--}}
+                    <div class="col-lg-4 col-md-6">
+                        <a href="" style="color: unset">
+                            <div class="categorie-item text-center">
+                                <div class="ci-thumb set-bg" data-setbg="{{ $track->image_path }}"></div>
+                                <div class="ci-text">
+                                    <h5>
+                                        {{ $track->name }}
+                                    </h5>
+                                    <span>{{ $track->courses_count . ' courses' }}</span>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                @endforeach
+
+                <div id="remove-row" class="text-center col-12">
+                    <button id="btn-more" data-id="{{ $track->id }}" class="site-btn">Load More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- categories section end -->
+
+
+    <!-- search section -->
+    <section class="search-section">
+        <div class="container">
+            <div class="search-warp">
+                <div class="section-title text-white">
+                    <h2>Search your course</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-10 offset-md-1">
+                        <!-- search form -->
+                        <form class="course-search-form">
+                            <input type="text" placeholder="Course">
+                            <input type="text" class="last-m" placeholder="Category">
+                            <button class="site-btn">Search Couse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- search section end -->
+
+
+    <!-- course section -->
+    <section class="course-section spad">
+        <div class="container">
+            <div class="section-title mb-0">
+                <h2>Featured Courses</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+                    scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+            </div>
+        </div>
+        <div class="course-warp">
+            <ul class="course-filter controls">
+                <li class="control active" data-filter="all">All</li>
+                <li class="control" data-filter=".finance">Finance</li>
+                <li class="control" data-filter=".design">Design</li>
+                <li class="control" data-filter=".web">Web Development</li>
+                <li class="control" data-filter=".photo">Photography</li>
+            </ul>
+            <div class="row course-items-area">
+                <!-- course -->
+                <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
+                    <div class="course-item">
+                        <div class="course-thumb set-bg" data-setbg="img/courses/1.jpg">
+                            <div class="price">Price: $15</div>
+                        </div>
+                        <div class="course-info">
+                            <div class="course-text">
+                                <h5>Art & Crafts</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <div class="students">120 Students</div>
+                            </div>
+                            <div class="course-author">
+                                <div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
+                                <p>William Parker, <span>Developer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- course -->
+                <div class="mix col-lg-3 col-md-4 col-sm-6 design">
+                    <div class="course-item">
+                        <div class="course-thumb set-bg" data-setbg="img/courses/2.jpg">
+                            <div class="price">Price: $15</div>
+                        </div>
+                        <div class="course-info">
+                            <div class="course-text">
+                                <h5>IT Development</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <div class="students">120 Students</div>
+                            </div>
+                            <div class="course-author">
+                                <div class="ca-pic set-bg" data-setbg="img/authors/2.jpg"></div>
+                                <p>William Parker, <span>Developer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- course -->
+                <div class="mix col-lg-3 col-md-4 col-sm-6 web">
+                    <div class="course-item">
+                        <div class="course-thumb set-bg" data-setbg="img/courses/3.jpg">
+                            <div class="price">Price: $15</div>
+                        </div>
+                        <div class="course-info">
+                            <div class="course-text">
+                                <h5>Graphic Design</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <div class="students">120 Students</div>
+                            </div>
+                            <div class="course-author">
+                                <div class="ca-pic set-bg" data-setbg="img/authors/3.jpg"></div>
+                                <p>William Parker, <span>Developer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- course -->
+                <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
+                    <div class="course-item">
+                        <div class="course-thumb set-bg" data-setbg="img/courses/4.jpg">
+                            <div class="price">Price: $15</div>
+                        </div>
+                        <div class="course-info">
+                            <div class="course-text">
+                                <h5>IT Development</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <div class="students">120 Students</div>
+                            </div>
+                            <div class="course-author">
+                                <div class="ca-pic set-bg" data-setbg="img/authors/4.jpg"></div>
+                                <p>William Parker, <span>Developer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- course -->
+                <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
+                    <div class="course-item">
+                        <div class="course-thumb set-bg" data-setbg="img/courses/5.jpg">
+                            <div class="price">Price: $15</div>
+                        </div>
+                        <div class="course-info">
+                            <div class="course-text">
+                                <h5>IT Development</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <div class="students">120 Students</div>
+                            </div>
+                            <div class="course-author">
+                                <div class="ca-pic set-bg" data-setbg="img/authors/5.jpg"></div>
+                                <p>William Parker, <span>Developer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- course -->
+                <div class="mix col-lg-3 col-md-4 col-sm-6 design">
+                    <div class="course-item">
+                        <div class="course-thumb set-bg" data-setbg="img/courses/6.jpg">
+                            <div class="price">Price: $15</div>
+                        </div>
+                        <div class="course-info">
+                            <div class="course-text">
+                                <h5>Socia Media</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <div class="students">120 Students</div>
+                            </div>
+                            <div class="course-author">
+                                <div class="ca-pic set-bg" data-setbg="img/authors/6.jpg"></div>
+                                <p>William Parker, <span>Developer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- course -->
+                <div class="mix col-lg-3 col-md-4 col-sm-6 web">
+                    <div class="course-item">
+                        <div class="course-thumb set-bg" data-setbg="img/courses/7.jpg">
+                            <div class="price">Price: $15</div>
+                        </div>
+                        <div class="course-info">
+                            <div class="course-text">
+                                <h5>IT Development</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <div class="students">120 Students</div>
+                            </div>
+                            <div class="course-author">
+                                <div class="ca-pic set-bg" data-setbg="img/authors/7.jpg"></div>
+                                <p>William Parker, <span>Developer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- course -->
+                <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
+                    <div class="course-item">
+                        <div class="course-thumb set-bg" data-setbg="img/courses/8.jpg">
+                            <div class="price">Price: $15</div>
+                        </div>
+                        <div class="course-info">
+                            <div class="course-text">
+                                <h5>HTML 5</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur</p>
+                                <div class="students">120 Students</div>
+                            </div>
+                            <div class="course-author">
+                                <div class="ca-pic set-bg" data-setbg="img/authors/8.jpg"></div>
+                                <p>William Parker, <span>Developer</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- course section end -->
+
+
+    <!-- signup section -->
+    <section class="signup-section spad">
+        <div class="signup-bg set-bg" data-setbg="img/signup-bg.jpg"></div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="signup-warp">
+                        <div class="section-title text-white text-left">
+                            <h2>Sign up to became a teacher</h2>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus
+                                mauris scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus
+                                faucibus finibus.</p>
+                        </div>
+                        <!-- signup form -->
+                        <form class="signup-form">
+                            <input type="text" placeholder="Your Name">
+                            <input type="text" placeholder="Your E-mail">
+                            <input type="text" placeholder="Your Phone">
+                            <label for="v-upload" class="file-up-btn">Upload Course</label>
+                            <input type="file" id="v-upload">
+                            <button class="site-btn">Search Couse</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- signup section end -->
+
+
+    <!-- banner section -->
+    <section class="banner-section spad">
+        <div class="container">
+            <div class="section-title mb-0 pb-2">
+                <h2>Join Our Community Now!</h2>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+                    scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
+            </div>
+            <div class="text-center pt-5">
+                <a href="#" class="site-btn">Register Now</a>
+            </div>
+        </div>
+    </section>
+    <!-- banner section end -->
+
+
+    <!-- footer section -->
+    <footer class="footer-section spad pb-0">
+        <div class="footer-top">
+            <div class="footer-warp">
+                <div class="row">
+                    <div class="widget-item">
+                        <h4>Contact Info</h4>
+                        <ul class="contact-list">
+                            <li>1481 Creekside Lane <br>Avila Beach, CA 931</li>
+                            <li>+53 345 7953 32453</li>
+                            <li>yourmail@gmail.com</li>
+                        </ul>
+                    </div>
+                    <div class="widget-item">
+                        <h4>Engeneering</h4>
+                        <ul>
+                            <li><a href="">Applied Studies</a></li>
+                            <li><a href="">Computer Engeneering</a></li>
+                            <li><a href="">Software Engeneering</a></li>
+                            <li><a href="">Informational Engeneering</a></li>
+                            <li><a href="">System Engeneering</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-item">
+                        <h4>Graphic Design</h4>
+                        <ul>
+                            <li><a href="">Applied Studies</a></li>
+                            <li><a href="">Computer Engeneering</a></li>
+                            <li><a href="">Software Engeneering</a></li>
+                            <li><a href="">Informational Engeneering</a></li>
+                            <li><a href="">System Engeneering</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-item">
+                        <h4>Development</h4>
+                        <ul>
+                            <li><a href="">Applied Studies</a></li>
+                            <li><a href="">Computer Engeneering</a></li>
+                            <li><a href="">Software Engeneering</a></li>
+                            <li><a href="">Informational Engeneering</a></li>
+                            <li><a href="">System Engeneering</a></li>
+                        </ul>
+                    </div>
+                    <div class="widget-item">
+                        <h4>Newsletter</h4>
+                        <form class="footer-newslatter">
+                            <input type="email" placeholder="E-mail">
+                            <button class="site-btn">Subscribe</button>
+                            <p>*We don’t spam</p>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="footer-warp">
+                <ul class="footer-menu">
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Register</a></li>
+                    <li><a href="#">Privacy</a></li>
+                </ul>
+                <div class="copyright">
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+            </div>
+        </div>
+    </footer>
+    <!-- footer section end -->
+@stop
+
+@section('script')
+    <script>
+        $(document).ready(function () {
+            // call function on #btn-more
+            $(document).on('click', '#btn-more', function () {
+                // set id value
+                var id = $(this).attr('data-id');
+                // show lode
+                $("#btn-more").html("Loading....");
+                // call ajax with post method
+                $.ajax({
+                    method: "POST",
+                    url: '{{ url("get-tracks-data-ajax") }}',
+                    data: {id: id, _token: "{{csrf_token()}}"},
+                    dataType: "text",
+                    success: function (datas) {  // ajax success
+                        if (datas != '') {
+                            console.log(datas);
+                            // remove row
+                            $('#remove-row').remove();
+                            // append result
+                            $('#load-data').append(datas);
+                        } else {
+                            // no data found
+                            $('#remove-row').remove();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+@stop

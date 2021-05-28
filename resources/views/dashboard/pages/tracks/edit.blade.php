@@ -2,6 +2,17 @@
 
 @section('title', config('app.name') . ' | Track Edit')
 
+@push('style')
+    <link href="{{ asset('dashboard/css/pages/wizard/wizard-4.css') }}" rel="stylesheet" type="text/css"/>
+    <style>
+        .image-input .image-input-wrapper {
+            width: 250px;
+            height: 150px;
+        }
+    </style>
+@endpush
+
+
 @section('content')
     <!--begin::Content-->
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
@@ -43,6 +54,31 @@
                                     @csrf
                                     @method('PUT')
                                     <div class="card-body">
+                                        <div class="form-group text-center">
+                                            <label class="d-block mb-3">
+                                                <strong>course image:</strong>
+                                            </label>
+                                            <div class="image-input image-input-outline" id="kt_image_1">
+                                                <div class="image-input-wrapper"
+                                                     style="background-image: url({{ $track->image_path }})"></div>
+                                                <label
+                                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                    data-action="change" data-toggle="tooltip" title=""
+                                                    data-original-title="Change avatar">
+                                                    <i class="fa fa-pen icon-sm text-muted"></i>
+                                                    <input type="file" name="image"
+                                                           accept=".png, .jpg, .jpeg"/>
+                                                    <input type="hidden" name="image"/>
+                                                </label>
+
+                                                <span
+                                                    class="btn btn-xs btn-icon btn-circle btn-white btn-hover-text-primary btn-shadow"
+                                                    data-action="cancel" data-toggle="tooltip" title="Cancel avatar">
+                                                  <i class="ki ki-bold-close icon-xs text-muted"></i>
+                                                 </span>
+                                            </div>
+
+                                        </div>
                                         <div class="form-group">
                                             <label for="name">
                                                 <strong>Name:</strong>
@@ -74,3 +110,10 @@
     </div>
     <!--end::Content-->
 @stop
+
+@push('script')
+    <script src="{{ asset('dashboard/js/pages/crud/file-upload/image-input.js') }}"></script>
+    <script>
+        var avatar1 = new KTImageInput('kt_image_1');
+    </script>
+@endpush

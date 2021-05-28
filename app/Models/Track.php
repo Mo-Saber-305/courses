@@ -9,8 +9,8 @@ class Track extends Model
 
     protected $table = 'tracks';
     public $timestamps = true;
-    protected $fillable = array('name');
-    protected $appends = array('courses_count');
+    protected $fillable = array('name', 'image');
+    protected $appends = array('courses_count', 'image_path');
 
     public function courses()
     {
@@ -25,5 +25,10 @@ class Track extends Model
     public function getCoursesCountAttribute()
     {
         return $this->courses->count();
+    }
+
+    public function getImagePathAttribute()
+    {
+        return asset('dashboard/images/tracks/' . $this->image);
     }
 }

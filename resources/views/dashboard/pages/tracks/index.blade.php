@@ -61,6 +61,7 @@
                             <tr>
                                 <th><strong>#</strong></th>
                                 <th><strong>name</strong></th>
+                                <th><strong>image</strong></th>
                                 <th><strong>courses count</strong></th>
                                 <th><strong>created at</strong></th>
                                 <th><strong>action</strong></th>
@@ -71,6 +72,9 @@
                                 <tr>
                                     <th>{{ $index + 1 }}</th>
                                     <th>{{ $track->name }}</th>
+                                    <th>
+                                        <img src="{{ $track->image_path }}" width="100" alt="....">
+                                    </th>
                                     <th>( {{ $track->courses_count }} ) course</th>
                                     <th>{{ $track->created_at->diffForHumans() }}</th>
                                     <th>

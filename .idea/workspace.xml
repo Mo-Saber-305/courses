@@ -2,8 +2,77 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cf0a419-8cb6-4899-a5f0-a865d80e5c2e" name="Default Changelist" comment="Merge branch 'master' of https://git.heroku.com/courses-system&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change afterPath="$PROJECT_DIR$/public/css/font-awesome.min.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/owl.carousel.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/dashboard/images/tracks/By6dTQbEEPZxrsYGXLf4SOTu77X9zA5XQl6uNIs6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/dashboard/images/tracks/DrpnRTm53T7jMZ7rBWm6DJsK1ChvYhePd40Pz3xH.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/dashboard/images/tracks/tracks_default.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Futura.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/Futura1.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/fonts/WEB BASED RESULT PUBLICATION SYSTEM FOR EDUCATION BOARDS.pdf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icon-fonts/fontawesome-webfont.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icon-fonts/fontawesome-webfont.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icon-fonts/fontawesome-webfont.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/icon-fonts/fontawesome-webfont.woff2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/add.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/authors/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/authors/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/authors/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/authors/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/authors/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/authors/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/authors/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/authors/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/blog/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/blog/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/blog/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/categories/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/categories/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/categories/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/categories/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/categories/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/categories/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/f-1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/f-2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/courses/single.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/favicon.ico" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/logo.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/page-bg/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/page-bg/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/page-bg/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/page-bg/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/page-bg/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/page-top-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/img/signup-bg.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/circle-progress.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/main.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/map.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/mixitup.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/owl.carousel.min.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/includes/navbar.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/app-old.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/TrackController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Dashboard/TrackController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Track.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Track.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2021_04_20_130412_create_tracks_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2021_04_20_130412_create_tracks_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/pages/tracks/create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/pages/tracks/create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/pages/tracks/edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/pages/tracks/edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/dashboard/pages/tracks/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/dashboard/pages/tracks/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -28,17 +97,17 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/auth/passwords" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/dashboard/images/tracks" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+    <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\auth\passwords" />
-      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\auth" />
-      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\dashboard\layouts" />
-      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\dashboard\pages\quizzes" />
-      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\dashboard\pages\courses" />
+      <recent name="D:\Web Developent\projects\laravel\courses\public\dashboard\images\tracks" />
+      <recent name="D:\Web Developent\projects\laravel\courses\public" />
+      <recent name="D:\Web Developent\projects\laravel\courses\public\js" />
+      <recent name="D:\Web Developent\projects\laravel\courses\public\css" />
+      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\layouts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -98,6 +167,7 @@
       <workItem from="1622033514154" duration="26593000" />
       <workItem from="1622113505309" duration="1685000" />
       <workItem from="1622117106127" duration="14790000" />
+      <workItem from="1622202160936" duration="30065000" />
     </task>
     <servers />
   </component>

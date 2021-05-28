@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Track;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\Rule;
 
 class TrackController extends Controller
@@ -53,7 +54,15 @@ class TrackController extends Controller
             'name' => ['required', 'unique:tracks']
         ]);
 
-        Track::create(['name' => $request['name']]);
+        $data = $request->except(['image']);
+
+        if ($request->hasFile('image') && $request['image'] != null) {
+            $fileName = $request->file('image')->hashName();
+            $request->file('image')->move(public_path('dashboard/images/tracks'), $fileName);
+            $data['image'] = $fileName;
+        }
+
+        Track::create($data);
 
         alert()->success('Track Created Successfully');
 
@@ -87,7 +96,21 @@ class TrackController extends Controller
             ]
         ]);
 
-        $track->update(['name' => $request['name']]);
+        $data = $request->except(['image']);
+
+        if ($request->hasFile('image') && $request['image'] != null) {
+            if ($track['image'] != 'tracks_default.jpg') {
+                Storage::disk('dashboard')->delete('tracks/' . $track->image);
+            }
+
+            $fileName = $request->file('image')->hashName();
+
+            $request->file('image')->move(public_path('dashboard/images/tracks'), $fileName);
+
+            $data['image'] = $fileName;
+        }
+
+        $track->update($data);
 
         alert()->success('Track Updated Successfully');
 
@@ -103,6 +126,10 @@ class TrackController extends Controller
     public function destroy(Request $request)
     {
         $track = Track::findOrFail($request['id']);
+
+        if ($track['image'] != 'tracks_default.jpg') {
+            Storage::disk('dashboard')->delete('tracks/' . $track->image);
+        }
 
         $track->delete();
 
