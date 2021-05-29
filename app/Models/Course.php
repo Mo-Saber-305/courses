@@ -9,7 +9,7 @@ class Course extends Model
 
     protected $table = 'courses';
     public $timestamps = true;
-    protected $fillable = array('track_id', 'title', 'link', 'image', 'status', 'description');
+    protected $fillable = array('track_id', 'title', 'link', 'image', 'status', 'price', 'description');
     protected $appends = ['image_path', 'users_count'];
 
     public function track()

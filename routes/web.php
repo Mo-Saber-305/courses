@@ -1,7 +1,5 @@
 <?php
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,48 +19,13 @@ Auth::routes();
 Route::get('/', 'HomeController@index');
 Route::get('/tracks', 'HomeController@index')->name('tracks.index');
 Route::get('/tracks/{id}', 'HomeController@index')->name('tracks.show');
-Route::get('get-tracks-data-ajax', 'HomeController@loadTrackData');
+Route::get('/courses/{id}', 'HomeController@index')->name('courses.show');
+Route::get('get-tracks-data-ajax', 'HomeController@loadTracksData');
+Route::get('get-courses-data-ajax', 'HomeController@loadCoursesData');
 
 /***************************************************************************************************/
 /**************************************** Dashboard Routes *****************************************/
 /***************************************************************************************************/
-
-Route::get('test', function (Request $request) {
-    $username = $request->username;
-    $response = Http::get('https://api.github.com/users/' . $username . '/events/public');
-
-    $score = 0;
-
-    $collection = collect(json_decode($response, true))->each(function ($data) use ($score) {
-        if ($data['type'] == 'PushEvent') {
-            $score += 10;
-        } elseif ($data['type'] == 'PullRequestEvent') {
-            $score += 5;
-        } elseif ($data['type'] == 'IssueCommentEvent ') {
-            $score += 4;
-        } else {
-            $score += 1;
-        }
-        echo $score;
-    });
-
-
-//    dd($collection);
-//    return $collection;
-//    $collection2 = $collection->all();
-//
-//    if ($collection2['type'] == 'PushEvent') {
-//        $score += 10;
-//    } elseif ($collection2['type'] == 'PullRequestEvent') {
-//        $score += 5;
-//    } elseif ($collection2['type'] == 'IssueCommentEvent') {
-//        $score += 4;
-//    } else {
-//        $score += 1;
-//    }
-//
-//    return "The Score Is : " . $score;
-});
 
 Route::middleware(['auth', 'admin'])->name('dashboard.')->prefix('dashboard')
     ->name('dashboard.')->namespace('Dashboard')

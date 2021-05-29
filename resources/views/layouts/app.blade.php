@@ -19,10 +19,13 @@
     <title>@yield('title')</title>
 
     <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="{{ asset('css/hover-min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+    @yield('style')
 
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -36,6 +39,10 @@
     </main>
 
     <!-- Scripts -->
+    {{--    <script src="{{ asset('js/wow.min.js') }}"></script>--}}
+    {{--    <script>--}}
+    {{--        new WOW().init();--}}
+    {{--    </script>--}}
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/circle-progress.min.js') }}"></script>

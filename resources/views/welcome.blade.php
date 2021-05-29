@@ -4,6 +4,21 @@
 
 @section('title', config('app.name') . ' | Home')
 
+@section('style')
+    <style>
+        .course-item .course-thumb {
+            position: relative;
+        }
+
+        .course-item .course-thumb .price {
+            position: absolute;
+            z-index: 1;
+            top: 0;
+            left: 0;
+        }
+    </style>
+@stop
+
 @section('content')
     <!-- Page Preloder -->
     <div id="preloder">
@@ -39,8 +54,8 @@
                     scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
             </div>
             <div class="row justify-content-center" id="load-data"></div>
-            <div id="remove-row" class="text-center">
-                <button id="btn-more" class="site-btn">Load More</button>
+            <div id="remove-row" class="text-center wow animate__animated animate__bounceInRight">
+                <button id="btn-more" class="site-btn ">Load More</button>
             </div>
         </div>
     </section>
@@ -81,165 +96,15 @@
         </div>
         <div class="course-warp">
             <ul class="course-filter controls">
-                <li class="control active" data-filter="all">All</li>
-                <li class="control" data-filter=".finance">Finance</li>
-                <li class="control" data-filter=".design">Design</li>
-                <li class="control" data-filter=".web">Web Development</li>
-                <li class="control" data-filter=".photo">Photography</li>
+                <li class="control active mixitup-control-active" data-track-id="all">All</li>
+                @foreach($tracks_data as $index => $track)
+                    <li class="control animate__backInUp" data-track-id="{{ $track->id }}">{{ $track->name }}</li>
+                @endforeach
+
             </ul>
-            <div class="row course-items-area">
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/1.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>Art & Crafts</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/1.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 design">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/2.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>IT Development</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/2.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 web">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/3.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>Graphic Design</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/3.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/4.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>IT Development</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/4.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 finance">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/5.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>IT Development</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/5.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 design">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/6.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>Socia Media</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/6.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 web">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/7.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>IT Development</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/7.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- course -->
-                <div class="mix col-lg-3 col-md-4 col-sm-6 photo">
-                    <div class="course-item">
-                        <div class="course-thumb set-bg" data-setbg="img/courses/8.jpg">
-                            <div class="price">Price: $15</div>
-                        </div>
-                        <div class="course-info">
-                            <div class="course-text">
-                                <h5>HTML 5</h5>
-                                <p>Lorem ipsum dolor sit amet, consectetur</p>
-                                <div class="students">120 Students</div>
-                            </div>
-                            <div class="course-author">
-                                <div class="ca-pic set-bg" data-setbg="img/authors/8.jpg"></div>
-                                <p>William Parker, <span>Developer</span></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <div class="row justify-content-center course-items-area"></div>
+            <div id="remove-course-btn" class="text-center col-12">
+                <button id="btn-more-courses" data-filtering="all" class="site-btn">Load More</button>
             </div>
         </div>
     </section>
@@ -367,31 +232,111 @@
 
 @section('script')
     <script>
-        var page = 1; //track user scroll as page number, right now page number is 1
-        load_more(page); //initial content load
+        $(function () {
+            $('[data-toggle="tooltip"]').tooltip();
 
-        $(document).on('click', '#btn-more', function () {
-            $(this).html('loading....');
-            page++; //page number increment
-            load_more(page); //load content
-        });
+            //---------------------------------------start load track data------------------------------------//
 
-        function load_more(page) {
-            $.ajax({
-                url: "{{ url('get-tracks-data-ajax?page=' ) }}" + page,
-                type: "get",
-                datatype: "html",
-            })
-                .done(function (data) {
-                    $("#btn-more").html('load more');
-                    $("#load-data").append(data.html); //append data into #results element
-                    if (page == data.last_page) {
-                        $('#remove-row').remove();
-                    }
+            var page = 1; //track user scroll as page number, right now page number is 1
+
+            load_more(page); //initial content load
+
+            //load more tracks
+            $(document).on('click', '#btn-more', function () {
+                $(this).html('loading....');
+                page++; //page number increment
+                load_more(page); //load content
+            });
+
+            function load_more(page) {
+                $.ajax({
+                    url: "{{ url('get-tracks-data-ajax?page=' ) }}" + page,
+                    type: "get",
+                    datatype: "html",
+
                 })
-                .fail(function (jqXHR, ajaxOptions, thrownError) {
-                    alert('No response from server');
-                });
-        }
+                    .done(function (data) {
+                        $("#btn-more").html('load more');
+                        $("#load-data").append(data.html); //append data into #results element
+                        if (page == data.last_page) {
+                            $('#remove-row').remove();
+                        }
+                    })
+                    .fail(function (jqXHR, ajaxOptions, thrownError) {
+                        alert('No response from server');
+                    });
+            }
+
+            //---------------------------------------end load track data------------------------------------//
+
+
+            //---------------------------------------start load courses data------------------------------------//
+
+            var filtering = $('#btn-more-courses').attr('data-filtering');
+
+            load_more_courses(page, filtering); //initial content load
+            var page_number = 1;
+            //load more courses
+            $(document).on('click', '#btn-more-courses', function () {
+                var id = $('#btn-more-courses').attr('data-filtering');
+                // var page_number = 1;
+                $(this).html('loading....');
+                page_number++; //page number increment
+                load_more_courses(page_number, id); //load content
+            });
+
+            //filtering data by track name
+            $('.control').on('click', function () {
+                var id = $(this).attr('data-track-id');
+                $(this).addClass('mixitup-control-active').siblings().removeClass('mixitup-control-active');
+                page_number = 1;
+                $('#btn-more-courses').attr('data-filtering', id);
+                filtering_courses(page_number, id);
+            });
+
+            function filtering_courses(page_number, id) {
+                $.ajax({
+                    url: "{{ url('get-courses-data-ajax?page=' ) }}" + page_number + "&id=" + id,
+                    type: "get",
+                    datatype: "html",
+                })
+                    .done(function (data) {
+                        $(".course-items-area").empty();
+                        $(".course-items-area").append(data.html); //append data into #results element
+
+                        if (page_number == data.last_page) {
+                            $('#remove-course-btn').hide();
+                        } else {
+                            $('#remove-course-btn').show();
+                        }
+                    })
+                    .fail(function (jqXHR, ajaxOptions, thrownError) {
+                        alert('No response from server');
+                    });
+            }
+
+            function load_more_courses(page_number, id) {
+                $.ajax({
+                    url: "{{ url('get-courses-data-ajax?page=' ) }}" + page_number + "&id=" + id,
+                    type: "get",
+                    datatype: "html",
+                })
+                    .done(function (data) {
+                        $("#btn-more-courses").html('load more');
+                        $(".course-items-area").append(data.html); //append data into #results element
+                        if (page_number == data.last_page) {
+                            $('#remove-course-btn').hide();
+                        } else {
+                            $('#remove-course-btn').show();
+                        }
+                    })
+                    .fail(function (jqXHR, ajaxOptions, thrownError) {
+                        alert('No response from server');
+                    });
+            }
+
+            //---------------------------------------end load courses data------------------------------------//
+        });
     </script>
+
 @stop

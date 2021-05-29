@@ -16,6 +16,7 @@ class CreateCoursesTable extends Migration
             $table->string('link')->nullable();
             $table->string('image')->default('course_default.jpg');
             $table->boolean('status')->default(0);
+            $table->bigInteger('price')->default(0);
 
             $table->timestamps();
         });
