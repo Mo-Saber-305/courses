@@ -19,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 Auth::routes();
 
 Route::get('/', 'HomeController@index');
-Route::post('get-tracks-data-ajax', 'HomeController@loadTrackData');
+Route::get('/tracks', 'HomeController@index')->name('tracks.index');
+Route::get('/tracks/{id}', 'HomeController@index')->name('tracks.show');
+Route::get('get-tracks-data-ajax', 'HomeController@loadTrackData');
 
 /***************************************************************************************************/
 /**************************************** Dashboard Routes *****************************************/
@@ -41,7 +43,7 @@ Route::get('test', function (Request $request) {
         } else {
             $score += 1;
         }
-        return $score;
+        echo $score;
     });
 
 

@@ -20,54 +20,42 @@ class HomeController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @param Request $request
+     * @return string
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tracks_data = Track::limit(6)->get();
 
-        return view('welcome', compact('tracks_data'));
+
+        return view('welcome');
     }
 
     function loadTrackData(Request $request)
     {
-        if ($request->ajax()) {
-            if ($request->id > 0) {
-                $tracks = Track::where('id', '>', $request->id)->limit(6)->get();
-            } else {
-                $tracks = Track::limit(6)->get();
-            }
-            $output = '';
-            $last_id = '';
+        $tracks_data = Track::withCount('courses')->orderBy('courses_count', 'desc')->paginate(6);
 
-            if (!$tracks->isEmpty()) {
-                foreach ($tracks as $track) {
-                    $output .= '
-                        <div class="col-lg-4 col-md-6">
-                            <a href="" style="color: unset">
-                                <div class="categorie-item text-center">
-                                    <div class="ci-thumb set-bg" data-setbg="' . asset('dashboard/images/tracks/' . $track->image_path) . '"
-                                    style=\'background: url("' . $track->image_path . '")\'></div>
-                                    <div class="ci-text">
-                                        <h5>' . $track->name . '</h5>
-                                        <span>' . $track->courses_count . ' courses' . '</span>
-                                    </div>
-                                </div>
-                            </a>
+        $lastPage = $tracks_data->lastPage();
+
+        $html = '';
+
+        foreach ($tracks_data as $track) {
+            $html .= '
+                <div class="col-lg-4 col-md-6">
+                    <a href="' . route("tracks.show", $track->id) . '" style="color: unset">
+                        <div class="categorie-item text-center">
+                            <div class="ci-thumb " style=\'background: url("' . $track->image_path . '")\'></div>
+                            <div class="ci-text">
+                                <h5>' . $track->name . '</h5>
+                                <span>' . $track->courses_count . ' courses' . '</span>
+                            </div>
                         </div>
-                    ';
-                    $last_id = $track->id;
-                }
+                    </a>
+                </div>
+            ';
+        }
 
-                $output .= '
-                    <div id="remove-row" class="col-12 text-center">
-                        <button type="button" name="load_more_button" class="site-btn" 
-                        data-id="' . $last_id . '" id="btn-more">Load More</button>
-                    </div>
-                ';
-            }
-
-            echo $output;
+        if ($request->ajax()) {
+            return response()->json(['html' => $html, 'last_page' => $lastPage]);
         }
     }
 }

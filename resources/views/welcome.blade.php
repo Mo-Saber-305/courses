@@ -38,27 +38,9 @@
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
                     scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
             </div>
-            <div class="row justify-content-center" id="load-data">
-                @foreach($tracks_data as $index => $track)
-                    {{--tack--}}
-                    <div class="col-lg-4 col-md-6">
-                        <a href="" style="color: unset">
-                            <div class="categorie-item text-center">
-                                <div class="ci-thumb set-bg" data-setbg="{{ $track->image_path }}"></div>
-                                <div class="ci-text">
-                                    <h5>
-                                        {{ $track->name }}
-                                    </h5>
-                                    <span>{{ $track->courses_count . ' courses' }}</span>
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                @endforeach
-
-                <div id="remove-row" class="text-center col-12">
-                    <button id="btn-more" data-id="{{ $track->id }}" class="site-btn">Load More</button>
-                </div>
+            <div class="row justify-content-center" id="load-data"></div>
+            <div id="remove-row" class="text-center">
+                <button id="btn-more" class="site-btn">Load More</button>
             </div>
         </div>
     </section>
@@ -385,33 +367,31 @@
 
 @section('script')
     <script>
-        $(document).ready(function () {
-            // call function on #btn-more
-            $(document).on('click', '#btn-more', function () {
-                // set id value
-                var id = $(this).attr('data-id');
-                // show lode
-                $("#btn-more").html("Loading....");
-                // call ajax with post method
-                $.ajax({
-                    method: "POST",
-                    url: '{{ url("get-tracks-data-ajax") }}',
-                    data: {id: id, _token: "{{csrf_token()}}"},
-                    dataType: "text",
-                    success: function (datas) {  // ajax success
-                        if (datas != '') {
-                            console.log(datas);
-                            // remove row
-                            $('#remove-row').remove();
-                            // append result
-                            $('#load-data').append(datas);
-                        } else {
-                            // no data found
-                            $('#remove-row').remove();
-                        }
-                    }
-                });
-            });
+        var page = 1; //track user scroll as page number, right now page number is 1
+        load_more(page); //initial content load
+
+        $(document).on('click', '#btn-more', function () {
+            $(this).html('loading....');
+            page++; //page number increment
+            load_more(page); //load content
         });
+
+        function load_more(page) {
+            $.ajax({
+                url: "{{ url('get-tracks-data-ajax?page=' ) }}" + page,
+                type: "get",
+                datatype: "html",
+            })
+                .done(function (data) {
+                    $("#btn-more").html('load more');
+                    $("#load-data").append(data.html); //append data into #results element
+                    if (page == data.last_page) {
+                        $('#remove-row').remove();
+                    }
+                })
+                .fail(function (jqXHR, ajaxOptions, thrownError) {
+                    alert('No response from server');
+                });
+        }
     </script>
 @stop
