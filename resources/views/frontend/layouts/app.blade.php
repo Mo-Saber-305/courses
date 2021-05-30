@@ -25,6 +25,11 @@
     <link rel="stylesheet" href="{{ asset('css/font-awesome.min.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/owl.carousel.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
+    <style>
+        html, body {
+            text-transform: capitalize;
+        }
+    </style>
     @yield('style')
 
     <!--[if lt IE 9]>
@@ -37,8 +42,8 @@
     <main>
         @yield('content')
     </main>
-
-    <!-- Scripts -->
+@include('frontend.includes.footer')
+<!-- Scripts -->
     <script src="{{ asset('js/wow.min.js') }}"></script>
     <script>
         new WOW().init();

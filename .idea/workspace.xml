@@ -2,7 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1cf0a419-8cb6-4899-a5f0-a865d80e5c2e" name="Default Changelist" comment="Merge branch 'master' of https://git.heroku.com/courses-system&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/includes/footer.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/frontend/includes/navbar.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/confirm.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/passwords/reset.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/verify.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/includes/navbar.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/includes/navbar.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app-old.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/app-old.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/app.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/layouts/app.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/frontend/pages/home.blade.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,17 +38,22 @@
   <component name="PropertiesComponent">
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/frontend" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="editing.templates" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\frontend\pages" />
+      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\frontend" />
+      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\includes" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\frontend" />
+      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\includes" />
       <recent name="D:\Web Developent\projects\laravel\courses\public\js" />
       <recent name="D:\Web Developent\projects\laravel\courses\public\css" />
       <recent name="D:\Web Developent\projects\laravel\courses\public\dashboard\images\tracks" />
-      <recent name="D:\Web Developent\projects\laravel\courses\public" />
-      <recent name="D:\Web Developent\projects\laravel\courses\resources\views\layouts" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -99,7 +115,7 @@
       <workItem from="1622117106127" duration="14790000" />
       <workItem from="1622202160936" duration="33799000" />
       <workItem from="1622287356693" duration="32946000" />
-      <workItem from="1622374064480" duration="18449000" />
+      <workItem from="1622374064480" duration="21278000" />
     </task>
     <servers />
   </component>

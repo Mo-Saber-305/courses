@@ -20,7 +20,7 @@ class HomeController extends Controller
     {
         $tracks_data = Track::withCount('courses')->orderBy('courses_count', 'desc')->limit(6)->get();
 
-        return view('welcome', compact('tracks_data'));
+        return view('frontend.pages.home', compact('tracks_data'));
     }
 
     function loadTracksData(Request $request)
