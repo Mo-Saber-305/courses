@@ -6,6 +6,7 @@
 
 @section('style')
     <style>
+
         .course-item .course-thumb {
             position: relative;
         }
@@ -15,6 +16,29 @@
             z-index: 1;
             top: 0;
             left: 0;
+
+        }
+
+        .hvr-sweep-to-top {
+            display: block;
+            transition-duration: 2s;
+        }
+
+        .hvr-grow {
+            transition-duration: 1s;
+        }
+
+        .hvr-float {
+            transition-duration: 0.7s;
+        }
+
+        .hvr-sweep-to-top:before {
+            background: #d82a4e;
+            transition-duration: 1s;
+        }
+
+        .categorie-item:hover {
+            background: none;
         }
     </style>
 @stop
@@ -31,13 +55,15 @@
     <!-- Hero section -->
     <section class="hero-section set-bg" data-setbg="{{ asset('img/bg.jpg') }}">
         <div class="container">
-            <div class="hero-text text-white">
+            <div class="hero-text text-white  wow animate__animated animate__fadeInLeft" data-wow-duration="2s"
+                 data-wow-delay="2s">
                 <h2>Get The Best Free Online Courses</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
                     scelerisque, at rutrum nulla <br> dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.
                 </p>
             </div>
-            <div class="text-center">
+            <div class="text-center wow animate__animated animate__fadeInRight" data-wow-duration="2s"
+                 data-wow-delay="2s">
                 <a href="{{ route('register') }}" class="site-btn">Sign Up Now</a>
             </div>
         </div>
@@ -48,13 +74,13 @@
     <!-- categories section -->
     <section class="categories-section spad">
         <div class="container">
-            <div class="section-title">
+            <div class="section-title wow animate__animated animate__fadeInUp" data-wow-duration="2s">
                 <h2>Our Course Categories</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
                     scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
             </div>
             <div class="row justify-content-center" id="load-data"></div>
-            <div id="remove-row" class="text-center wow animate__animated animate__bounceInRight">
+            <div id="remove-row" class="text-center wow animate__animated animate__fadeInUp" data-wow-duration="2s">
                 <button id="btn-more" class="site-btn ">Load More</button>
             </div>
         </div>
@@ -67,9 +93,11 @@
         <div class="container">
             <div class="search-warp">
                 <div class="section-title text-white">
-                    <h2>Search your course</h2>
+                    <h2 class=" wow animate__animated animate__fadeInRight" data-wow-duration="2s">
+                        Search your course
+                    </h2>
                 </div>
-                <div class="row">
+                <div class="row wow animate__animated animate__fadeInLeft" data-wow-duration="2s">
                     <div class="col-md-10 offset-md-1">
                         <!-- search form -->
                         <form class="course-search-form">
@@ -89,13 +117,14 @@
     <section class="course-section spad">
         <div class="container">
             <div class="section-title mb-0">
-                <h2>Featured Courses</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+                <h2 class="wow animate__animated animate__fadeInLeft" data-wow-duration="2s">Featured Courses</h2>
+                <p class="wow animate__animated animate__fadeInRight" data-wow-duration="2s">Lorem ipsum dolor sit amet,
+                    consectetur adipiscing elit. Donec malesuada lorem maximus mauris
                     scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
             </div>
         </div>
         <div class="course-warp">
-            <ul class="course-filter controls">
+            <ul class="course-filter controls wow animate__animated animate__fadeInUp" data-wow-duration="2s">
                 <li class="control active mixitup-control-active" data-track-id="all">All</li>
                 @foreach($tracks_data as $index => $track)
                     <li class="control animate__backInUp" data-track-id="{{ $track->id }}">{{ $track->name }}</li>
@@ -113,8 +142,9 @@
 
     <!-- signup section -->
     <section class="signup-section spad">
-        <div class="signup-bg set-bg" data-setbg="img/signup-bg.jpg"></div>
-        <div class="container-fluid">
+        <div class="signup-bg set-bg wow animate__animated animate__fadeInRight" data-wow-duration="2s"
+             data-setbg="{{ asset('img/signup-bg.jpg') }}"></div>
+        <div class="container-fluid  wow animate__animated animate__fadeInLeft" data-wow-duration="2s">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="signup-warp">
@@ -129,9 +159,10 @@
                             <input type="text" placeholder="Your Name">
                             <input type="text" placeholder="Your E-mail">
                             <input type="text" placeholder="Your Phone">
-                            <label for="v-upload" class="file-up-btn">Upload Course</label>
-                            <input type="file" id="v-upload">
-                            <button class="site-btn">Search Couse</button>
+                            <div class="text-center">
+                                <button class="site-btn">Search Course</button>
+                            </div>
+
                         </form>
                     </div>
                 </div>
@@ -145,12 +176,16 @@
     <section class="banner-section spad">
         <div class="container">
             <div class="section-title mb-0 pb-2">
-                <h2>Join Our Community Now!</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
+                <h2 class="wow animate__animated animate__fadeInUp" data-wow-duration="2s">
+                    Join Our Community Now!
+                </h2>
+                <p class="wow animate__animated animate__fadeInUp" data-wow-duration="2s" data-wow-delay="1s">Lorem
+                    ipsum dolor sit amet, consectetur adipiscing elit. Donec malesuada lorem maximus mauris
                     scelerisque, at rutrum nulla dictum. Ut ac ligula sapien. Suspendisse cursus faucibus finibus.</p>
             </div>
-            <div class="text-center pt-5">
-                <a href="#" class="site-btn">Register Now</a>
+            <div class="text-center pt-5 wow animate__animated animate__fadeInUp" data-wow-duration="2s"
+                 data-wow-delay="1s">
+                <a href="{{ route('register') }}" class="site-btn">Register Now</a>
             </div>
         </div>
     </section>
@@ -162,67 +197,31 @@
         <div class="footer-top">
             <div class="footer-warp">
                 <div class="row">
-                    <div class="widget-item">
+                    <div class="widget-item col-md-6">
                         <h4>Contact Info</h4>
-                        <ul class="contact-list">
-                            <li>1481 Creekside Lane <br>Avila Beach, CA 931</li>
-                            <li>+53 345 7953 32453</li>
-                            <li>yourmail@gmail.com</li>
+                        <ul class="contact-list pt-0">
+                            <li>Abu Sultan <br>Fayed, Ismailia</li>
+                            <li>+20 01099248764</li>
+                            <li>mo.saber.dev@gmail.com</li>
                         </ul>
                     </div>
-                    <div class="widget-item">
-                        <h4>Engeneering</h4>
-                        <ul>
-                            <li><a href="">Applied Studies</a></li>
-                            <li><a href="">Computer Engeneering</a></li>
-                            <li><a href="">Software Engeneering</a></li>
-                            <li><a href="">Informational Engeneering</a></li>
-                            <li><a href="">System Engeneering</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget-item">
-                        <h4>Graphic Design</h4>
-                        <ul>
-                            <li><a href="">Applied Studies</a></li>
-                            <li><a href="">Computer Engeneering</a></li>
-                            <li><a href="">Software Engeneering</a></li>
-                            <li><a href="">Informational Engeneering</a></li>
-                            <li><a href="">System Engeneering</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget-item">
-                        <h4>Development</h4>
-                        <ul>
-                            <li><a href="">Applied Studies</a></li>
-                            <li><a href="">Computer Engeneering</a></li>
-                            <li><a href="">Software Engeneering</a></li>
-                            <li><a href="">Informational Engeneering</a></li>
-                            <li><a href="">System Engeneering</a></li>
-                        </ul>
-                    </div>
-                    <div class="widget-item">
+                    <div class="widget-item col-md-6">
                         <h4>Newsletter</h4>
                         <form class="footer-newslatter">
                             <input type="email" placeholder="E-mail">
-                            <button class="site-btn">Subscribe</button>
-                            <p>*We don’t spam</p>
+                            <a href="javascript:;" class="site-btn">Subscribe</a>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
         <div class="footer-bottom">
-            <div class="footer-warp">
-                <ul class="footer-menu">
-                    <li><a href="#">Terms & Conditions</a></li>
-                    <li><a href="#">Register</a></li>
-                    <li><a href="#">Privacy</a></li>
-                </ul>
-                <div class="copyright">
+            <div class="footer-warp text-center">
+                <div class="copyright" style="float: none">
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     Copyright &copy;<script>document.write(new Date().getFullYear());</script>
-                    All rights reserved | This template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
-                    <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    All rights reserved | This site is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by
+                    <a href="javascript:;">Mo Saber</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
             </div>
         </div>
@@ -258,6 +257,8 @@
                     .done(function (data) {
                         $("#btn-more").html('load more');
                         $("#load-data").append(data.html); //append data into #results element
+                        $('.track:odd').addClass('wow animate__animated animate__fadeInLeft').attr('data-wow-duration', '2s');
+                        $('.track:even').addClass('wow animate__animated animate__fadeInRight').attr('data-wow-duration', '2s');
                         if (page == data.last_page) {
                             $('#remove-row').remove();
                         }
@@ -303,6 +304,8 @@
                     .done(function (data) {
                         $(".course-items-area").empty();
                         $(".course-items-area").append(data.html); //append data into #results element
+                        $('.mix:odd').addClass('wow animate__animated animate__fadeInLeft').attr('data-wow-duration', '2s');
+                        $('.mix:even').addClass('wow animate__animated animate__fadeInRight').attr('data-wow-duration', '2s');
 
                         if (page_number == data.last_page) {
                             $('#remove-course-btn').hide();
@@ -324,6 +327,8 @@
                     .done(function (data) {
                         $("#btn-more-courses").html('load more');
                         $(".course-items-area").append(data.html); //append data into #results element
+                        $('.mix:odd').addClass('wow animate__animated animate__fadeInLeft').attr('data-wow-duration', '2s');
+                        $('.mix:even').addClass('wow animate__animated animate__fadeInRight').attr('data-wow-duration', '2s');
                         if (page_number == data.last_page) {
                             $('#remove-course-btn').hide();
                         } else {

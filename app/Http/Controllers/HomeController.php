@@ -33,10 +33,10 @@ class HomeController extends Controller
 
         foreach ($tracks_data as $track) {
             $html .= '
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-6 track hvr-grow">
                     <a href="' . route("tracks.show", $track->id) . '" style="color: unset">
-                        <div class="categorie-item text-center">
-                            <div class="ci-thumb " style=\'background: url("' . $track->image_path . '")\'></div>
+                        <div class="categorie-item text-center hvr-sweep-to-top">
+                            <div class="ci-thumb " style=\'background-image: url("' . $track->image_path . '"); background-repeat: no-repeat\'></div>
                             <div class="ci-text">
                                 <h5>' . $track->name . '</h5>
                                 <span>' . $track->courses_count . ' courses' . '</span>
@@ -72,7 +72,7 @@ class HomeController extends Controller
 
         foreach ($courses_data as $course) {
             $html .= '
-                <div class="mix col-lg-3 text-center col-md-4 col-sm-6 animate__animated animate__fadeInBottomRight ' . str_replace(' ', '-', $course->track->id) . '">
+                <div class="mix col-lg-3 text-center col-md-4 col-sm-6 hvr-grow ' . str_replace(' ', '-', $course->track->id) . '">
                     <a href="' . route('courses.show', $course->id) . '">
                         <div class="course-item">
                             <div class="course-thumb">

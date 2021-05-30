@@ -39,10 +39,10 @@
     </main>
 
     <!-- Scripts -->
-    {{--    <script src="{{ asset('js/wow.min.js') }}"></script>--}}
-    {{--    <script>--}}
-    {{--        new WOW().init();--}}
-    {{--    </script>--}}
+    <script src="{{ asset('js/wow.min.js') }}"></script>
+    <script>
+        new WOW().init();
+    </script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/circle-progress.min.js') }}"></script>
